@@ -1,3 +1,13 @@
+.redtext {
+  color: red;
+}
+
+.strikethrough {
+  text-decoration: line-through;
+  /* color: #999; */
+  font-size: 18px;
+}
+
 .discount {
   color: pink;
   margin-top: -15px;

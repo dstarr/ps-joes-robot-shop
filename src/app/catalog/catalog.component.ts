@@ -6,9 +6,11 @@ import { IProduct } from './product.model';
   templateUrl: './catalog.component.html',
   styleUrls: ['./catalog.component.css'],
 })
+
 export class CatalogComponent {
   products: IProduct[];
   filter: string = '';
+  cart: IProduct[] = [];
 
   constructor() {
     this.products = [
@@ -196,5 +198,21 @@ export class CatalogComponent {
     return this.filter === ''
       ? this.products
       : this.products.filter((product) => product.category === this.filter);
+  }
+
+  getDiscountedClasses(product: IProduct): string[] {
+    if (product.discount > 0) {
+      return [
+        'strikethrough',
+        'redtext'
+      ];
+    } else {
+      return [];
+    }
+  }
+
+  addToCart(product: IProduct): void {
+    this.cart.push(product);
+    console.log('Product added to cart:', product.name);
   }
 }

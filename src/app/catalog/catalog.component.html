@@ -20,13 +20,18 @@
             </div>
           </div>
           <div class="price">
-            <div *ngIf="product.discount === 0">{{ product.price | currency }}</div>
+            <div *ngIf="product.discount === 0">
+              {{ product.price | currency }}
+            </div>
             <div *ngIf="product.discount > 0" class="discount">
+              <div [ngClass]="getDiscountedClasses(product)">
+                {{ product.price | currency }}
+              </div>
               {{ (product.price * (1 - product.discount)) | currency }}
             </div>
 
 
-            <button class="cta">Buy</button>
+            <button (click)="addToCart(product)" class="cta">Buy</button>
           </div>
         </div>
       </li>
