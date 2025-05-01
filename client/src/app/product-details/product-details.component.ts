@@ -7,7 +7,7 @@ import { IProduct } from '../catalog/product.model';
   styleUrls: ['./product-details.component.css']
 })
 export class ProductDetailsComponent {
-  
+
   @Input()
   product!: IProduct;
 

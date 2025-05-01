@@ -6,10 +6,10 @@
       <a class="button" (click)="filter='Bases'">Bases</a>
       <a class="button" (click)="filter=''">All</a>
     </div>
-  
-    <ul class="products">      
+
+    <ul class="products">
       <li class="product-item" *ngFor="let product of getFilteredProducts()">
-        <bot-product-details 
+        <bot-product-details
           (buy)="addToCart(product)"
           [product]="product"></bot-product-details>
       </li>
