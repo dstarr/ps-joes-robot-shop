@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IProduct } from './product.model';
 import { CartService } from '../cart/cart.service';
 import { ProductService } from './product.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'bot-catalog',
@@ -15,7 +16,9 @@ export class CatalogComponent {
 
   constructor(
     private cartService: CartService,
-    private productService: ProductService
+    private productService: ProductService,
+    private router: Router,
+    private route: ActivatedRoute
   )
   {
     this.products = [];
@@ -30,6 +33,10 @@ export class CatalogComponent {
         console.error('Error fetching products:', err);
       },
     });
+
+    this.route.queryParams.subscribe((params) => {
+      this.filter = params['filter'] || '';
+    });
   }
 
   getFilteredProducts(): IProduct[] {
@@ -40,6 +47,7 @@ export class CatalogComponent {
 
   addToCart(product: IProduct): void {
     this.cartService.add(product);
+    this.router.navigate(['/cart']);
   }
 
 }
